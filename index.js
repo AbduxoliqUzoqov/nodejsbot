@@ -11,7 +11,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello")
 });
-bot.setWebHook("https://YOUR_VERCEL_URL/api/${token}");
+bot.setWebHook("https://nodejsbot-mu.vercel.app/api/${token}");
 
 app.post(`/api/${token}`, (req, res) => {
     bot.processUpdate(req.body);
