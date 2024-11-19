@@ -6,7 +6,17 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 const adminId = "6456220643";
 
+app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("hello")
+});
+bot.setWebHook("https://YOUR_VERCEL_URL/api/${token}");
+
+app.post(`/api/${token}`, (req, res) => {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+});
 const botstart = () => {
   bot.on('message', (msg) => {
     console.log(msg);
@@ -54,9 +64,7 @@ const botstart = () => {
 
 botstart();
 
-app.get("/about", (req, res) => {
-  res.send("salom about");
-});
+
 app.listen(3000, () => {
   console.log("server ishlamoqda...")
 });
